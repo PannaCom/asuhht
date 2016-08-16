@@ -29,10 +29,10 @@ namespace UsaNews24h.Controllers
                 if (news.Count <= 0) continue;
                 content = "";// "<div class=\"box\" style=\"float:left;position:relative;display:block;width:32%;margin-right:2px;\">";
                 content += "<div class=\"col-md-12\" style=\"background-color: #ffffff;min-height:50px;margin-bottom:10px;\">";
-                content += "<span style=\"background-color:#FD0005;color:white;position:relative;top:0;padding:0px 7px;font-weight:bold;font-size: 13px;padding-right:5px;\"><a href=\"/state/" + state + "\" target=_blank style=\"color:white;\">" + state + "</a></span>&nbsp;";
+                content += "<span style=\"background-color:#FD0005;color:white;position:relative;top:0;padding:0px 7px;font-weight:bold;font-size: 13px;padding-right:5px;\"><a href=\"/state/" + state + "-1\" target=_blank style=\"color:white;\">" + state + "</a></span>&nbsp;";
                 for (int j = 0; j < news.Count; j++)
                 {
-                    content += "<i class=\"fa fa-calendar\"></i><span>" + news[j].date_time + "</span>";
+                    content += "<i class=\"fa fa-calendar\"></i>&nbsp;<span>" + news[j].date_time + "</span>";
 					content +="<h6><a href=\""+news[j].link+"\" target=_blank>"+news[j].name+"</a></h6>";
                 }
                 content += "</div>";

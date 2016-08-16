@@ -25,7 +25,7 @@ namespace UsaNews24h.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<news> news { get; set; }
         public virtual DbSet<states_list> states_list { get; set; }
+        public virtual DbSet<news> news { get; set; }
     }
 }

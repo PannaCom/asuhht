@@ -4,21 +4,22 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="usanews24hModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="usanews24hModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="news">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="268" />
-          <Property Name="des" Type="nvarchar" MaxLength="1501" />
+          <Property Name="des" Type="ntext" />
           <Property Name="full_content" Type="ntext" />
           <Property Name="image" Type="nvarchar" MaxLength="151" />
-          <Property Name="link" Type="nvarchar" MaxLength="251" />
+          <Property Name="link" Type="nvarchar" MaxLength="551" />
           <Property Name="state" Type="nvarchar" MaxLength="50" />
           <Property Name="keywords" Type="nvarchar" MaxLength="250" />
           <Property Name="date_time" Type="datetime" />
           <Property Name="time" Type="time" Precision="7" />
+          <Property Name="date_id" Type="int" />
         </EntityType>
         <EntityType Name="states_list">
           <Key>
@@ -33,26 +34,10 @@
           <EntitySet Name="news" EntityType="Self.news" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="states_list" EntityType="Self.states_list" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="usanews24hModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="news">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="268" FixedLength="false" Unicode="true" />
-          <Property Name="des" Type="String" MaxLength="1501" FixedLength="false" Unicode="true" />
-          <Property Name="full_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="image" Type="String" MaxLength="151" FixedLength="false" Unicode="true" />
-          <Property Name="link" Type="String" MaxLength="251" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="keywords" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="date_time" Type="DateTime" Precision="3" />
-          <Property Name="time" Type="Time" Precision="7" />
-        </EntityType>
         <EntityType Name="states_list">
           <Key>
             <PropertyRef Name="id" />
@@ -63,31 +48,31 @@
           <Property Name="largestcity" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="usanews24hEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="news" EntityType="Self.news" />
           <EntitySet Name="states_list" EntityType="Self.states_list" />
+          <EntitySet Name="news" EntityType="usanews24hModel.news" />
         </EntityContainer>
+        <EntityType Name="news">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="268" FixedLength="false" Unicode="true" />
+          <Property Name="des" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="full_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="151" FixedLength="false" Unicode="true" />
+          <Property Name="link" Type="String" MaxLength="551" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="keywords" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="date_time" Type="DateTime" Precision="3" />
+          <Property Name="time" Type="Time" Precision="7" />
+          <Property Name="date_id" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="usanews24hModelStoreContainer" CdmEntityContainer="usanews24hEntities">
-          <EntitySetMapping Name="news">
-            <EntityTypeMapping TypeName="usanews24hModel.news">
-              <MappingFragment StoreEntitySet="news">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="des" ColumnName="des" />
-                <ScalarProperty Name="full_content" ColumnName="full_content" />
-                <ScalarProperty Name="image" ColumnName="image" />
-                <ScalarProperty Name="link" ColumnName="link" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="keywords" ColumnName="keywords" />
-                <ScalarProperty Name="date_time" ColumnName="date_time" />
-                <ScalarProperty Name="time" ColumnName="time" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="states_list">
             <EntityTypeMapping TypeName="usanews24hModel.states_list">
               <MappingFragment StoreEntitySet="states_list">
@@ -95,6 +80,23 @@
                 <ScalarProperty Name="state" ColumnName="state" />
                 <ScalarProperty Name="capital" ColumnName="capital" />
                 <ScalarProperty Name="largestcity" ColumnName="largestcity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="news">
+            <EntityTypeMapping TypeName="usanews24hModel.news">
+              <MappingFragment StoreEntitySet="news">
+                <ScalarProperty Name="date_id" ColumnName="date_id" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="date_time" ColumnName="date_time" />
+                <ScalarProperty Name="keywords" ColumnName="keywords" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="full_content" ColumnName="full_content" />
+                <ScalarProperty Name="des" ColumnName="des" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

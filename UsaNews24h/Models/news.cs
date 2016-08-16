@@ -24,5 +24,6 @@ namespace UsaNews24h.Models
         public string keywords { get; set; }
         public Nullable<System.DateTime> date_time { get; set; }
         public Nullable<System.TimeSpan> time { get; set; }
+        public Nullable<int> date_id { get; set; }
     }
 }
