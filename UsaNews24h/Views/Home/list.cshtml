@@ -1,0 +1,46 @@
+﻿@model PagedList.IPagedList<UsaNews24h.Models.news>
+@using PagedList.Mvc; 
+@{
+    ViewBag.Title = "list";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div id="main-content">
+        <div class="col-md-12" style="background-color: red;margin-bottom:10px;color:white;">
+            <h6>@ViewBag.state</h6>
+        </div>
+            @foreach (var item in Model)
+            {
+                <div class="col-md-12" style="background-color: #ffffff;min-height:100px;margin-bottom:10px;">
+                    <span>
+                        <i class="fa fa-calendar"></i>&nbsp;@item.date_time
+                    </span>
+                    <h6><a href="@item.link" target=_blank>@item.name</a></h6>
+                </div>
+            }
+
+            <div class="box">
+                <center>
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </center>
+            </div>
+        </div>
+
+
+
