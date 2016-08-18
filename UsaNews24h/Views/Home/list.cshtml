@@ -1,7 +1,9 @@
 ﻿@model PagedList.IPagedList<UsaNews24h.Models.news>
 @using PagedList.Mvc; 
 @{
-    ViewBag.Title = "list";
+    ViewBag.Title = ViewBag.state+" news online 24h";
+    ViewBag.Des = "local news of " + ViewBag.state + ", one of 52 states of USA";
+    ViewBag.keywords = ViewBag.state+", usa, news, 24h, local, states, online";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="row">

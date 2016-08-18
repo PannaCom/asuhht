@@ -65,7 +65,7 @@ namespace UsaNews24h.Controllers
         }
         //http://www.50states.com/news/ tham khao them
         public string[] url = new string[] { "https://news.google.com/news?cf=all&hl=en&pz=1&ned=us&topic=n&output=rss", "http://www.msnbc.com/feeds/latest", "http://rssfeeds.usatoday.com/usatoday-newstopstories&x=1", "http://rss.cnn.com/rss/edition_us.rss", "http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml", "http://feeds.abcnews.com/abcnews/usheadlines", "http://feeds.foxnews.com/foxnews/latest?format=xml" };
-        string[] stopword = new string[] { "New York Daily News", "Chicago Tribune", "Los Angeles Times", "Washington Post","CBS 8 San Diego"};
+        string[] stopword = new string[] { "New York Daily News", "Chicago Tribune", "Los Angeles Times", "Washington Post", "CBS 8 San Diego", "washingtonpost" };
         public string crawl() {
             if (Config.isCrawl) return "Crawling..";
             Config.isCrawl = true;
