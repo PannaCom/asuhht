@@ -14,8 +14,8 @@ namespace UsaNews24h
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
                 "State",
-                "state/{state}",
-                new { controller = "Home", action = "list", state = UrlParameter.Optional }
+                "state/{state}-{page}",
+                new { controller = "Home", action = "list", state = UrlParameter.Optional, page = UrlParameter.Optional }
             );
             routes.MapRoute(
                 name: "Default",

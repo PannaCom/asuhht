@@ -20,6 +20,7 @@
           <Property Name="date_time" Type="datetime" />
           <Property Name="time" Type="time" Precision="7" />
           <Property Name="date_id" Type="int" />
+          <Property Name="pdf" Type="nvarchar" MaxLength="301" />
         </EntityType>
         <EntityType Name="states_list">
           <Key>
@@ -66,6 +67,7 @@
           <Property Name="date_time" Type="DateTime" Precision="3" />
           <Property Name="time" Type="Time" Precision="7" />
           <Property Name="date_id" Type="Int32" />
+          <Property Name="pdf" Type="String" MaxLength="301" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -86,6 +88,7 @@
           <EntitySetMapping Name="news">
             <EntityTypeMapping TypeName="usanews24hModel.news">
               <MappingFragment StoreEntitySet="news">
+                <ScalarProperty Name="pdf" ColumnName="pdf" />
                 <ScalarProperty Name="date_id" ColumnName="date_id" />
                 <ScalarProperty Name="time" ColumnName="time" />
                 <ScalarProperty Name="date_time" ColumnName="date_time" />

@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using System.Xml;
 using UsaNews24h.Models;
 using PagedList;
+using SelectPdf;
 namespace UsaNews24h.Controllers
 {
     public class HomeController : Controller
@@ -190,6 +191,9 @@ namespace UsaNews24h.Controllers
                                         var any = db.news.Any(o => o.date_id == datetimeid && o.name == title && o.link == link);
                                         if (!any)
                                         {
+                                            Uri urldomain= new Uri(link);
+                                            string pdf=Config.unicodeToNoMark(title) + ".pdf";
+                                            savePdf(link, pdf, urldomain.Host);
                                             news n = new news();
                                             n.date_id = datetimeid;
                                             n.date_time = fdate;
@@ -200,28 +204,81 @@ namespace UsaNews24h.Controllers
                                             n.state = state1;
                                             n.image=image;
                                             n.time = fdate.Value.TimeOfDay;
+                                            n.pdf = pdf;
                                             db.news.Add(n);
                                             db.SaveChanges();
+
                                         }
                                     }
                                     
                              }
                              else continue;
                         }
-                        catch (Exception exInFor)
+                        catch (Exception exInFor1)
                         {
                             //int abc = 0;
                             //Array.Resize(ref arrItem, Length);
                         }
                     }//for node
                 }
-                catch (Exception exTryFor)
+                catch (Exception exTryFor2)
                 {
                     //int abc = 0;
                 }
             }
             Config.isCrawl = false;
             return "Done";
+        }
+        public string updatePdf()
+        {
+            try
+            {
+                int datetimeid=Config.datetimeidByDay(-3);
+                var p = (from q in db.news where q.date_id >= datetimeid && q.pdf==null select q).ToList();
+                for (int i = 0; i < p.Count; i++)
+                {
+                    Uri urldomain = new Uri(p[i].link);
+                    string pdf = Config.unicodeToNoMark(p[i].name) + ".pdf";
+                    savePdf(p[i].link, pdf, urldomain.Host);
+                    db.Database.ExecuteSqlCommand("update news set pdf=N'/Files/"+DateTime.Now.ToString("yyyyMMdd")+"/"+pdf+"' where id="+p[i].id);
+                }
+                return "1";
+            }
+            catch
+            {
+                return "0";
+            }
+        }
+        public void savePdf(string url, string name,string domain)
+        {
+            var originalDirectory = new DirectoryInfo(string.Format("{0}Files", Server.MapPath(@"\")));
+            string strDay = DateTime.Now.ToString("yyyyMMdd");
+            string pathString = System.IO.Path.Combine(originalDirectory.ToString(), strDay);
+            string fullPath = pathString + "\\"+name;
+            bool isExists = System.IO.Directory.Exists(pathString);
+            if (!isExists)
+                System.IO.Directory.CreateDirectory(pathString);
+            if (System.IO.File.Exists(fullPath)) return;
+            HtmlToPdf converter = new HtmlToPdf();
+            // create a new pdf document converting an url
+            PdfDocument doc = converter.ConvertUrl(url);
+
+            // get conversion result (contains document info from the web page)
+            HtmlToPdfResult result = converter.ConversionResult;
+
+            // set the document properties
+            doc.DocumentInformation.Title = result.WebPageInformation.Title;
+            doc.DocumentInformation.Subject = result.WebPageInformation.Description;
+            doc.DocumentInformation.Keywords = result.WebPageInformation.Keywords;
+
+            doc.DocumentInformation.Author = domain;
+            doc.DocumentInformation.CreationDate = DateTime.Now;
+
+            // save pdf document
+            doc.Save(fullPath);
+
+            // close pdf document
+            doc.Close();
         }
         public string getImageSrc(string content)
         {

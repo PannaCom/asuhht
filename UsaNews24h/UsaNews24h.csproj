@@ -39,34 +39,87 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
-    <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Routing" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Select.HtmlToPdf">
+      <HintPath>..\packages\Select.HtmlToPdf.17.1.0\lib\net40\Select.HtmlToPdf.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Entity">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Abstractions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -160,6 +213,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -196,6 +250,69 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\font-awesome-4.4.0\css\font-awesome.css" />
+    <Content Include="Content\font-awesome-4.4.0\css\font-awesome.min.css" />
+    <Content Include="Content\font-awesome-4.4.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\font-awesome-4.4.0\HELP-US-OUT.txt" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\1.jpg" />
+    <Content Include="Content\images\10.jpg" />
+    <Content Include="Content\images\11.jpg" />
+    <Content Include="Content\images\12.jpg" />
+    <Content Include="Content\images\13.jpg" />
+    <Content Include="Content\images\14.jpg" />
+    <Content Include="Content\images\15.jpg" />
+    <Content Include="Content\images\16.jpg" />
+    <Content Include="Content\images\17.jpg" />
+    <Content Include="Content\images\18.jpg" />
+    <Content Include="Content\images\19.jpg" />
+    <Content Include="Content\images\2.jpg" />
+    <Content Include="Content\images\20.jpg" />
+    <Content Include="Content\images\21.jpg" />
+    <Content Include="Content\images\22.jpg" />
+    <Content Include="Content\images\23.jpg" />
+    <Content Include="Content\images\24.jpg" />
+    <Content Include="Content\images\3.jpg" />
+    <Content Include="Content\images\4.jpg" />
+    <Content Include="Content\images\5.jpg" />
+    <Content Include="Content\images\6.jpg" />
+    <Content Include="Content\images\7.jpg" />
+    <Content Include="Content\images\8.jpg" />
+    <Content Include="Content\images\9.jpg" />
+    <Content Include="Content\images\ava-1.jpg" />
+    <Content Include="Content\images\ava-2.png" />
+    <Content Include="Content\images\ava-3.jpeg" />
+    <Content Include="Content\images\ava-4.jpg" />
+    <Content Include="Content\images\banner-2.jpg" />
+    <Content Include="Content\images\banner.jpg" />
+    <Content Include="Content\images\bg2.jpg" />
+    <Content Include="Content\images\logo.jpg" />
+    <Content Include="Content\images\slide-1.jpg" />
+    <Content Include="Content\images\slide-2.jpg" />
+    <Content Include="Content\images\slide-3.jpg" />
+    <Content Include="Content\images\title-natural.png" />
+    <Content Include="Content\images\title-picture.png" />
+    <Content Include="Content\images\title-vimeo.png" />
+    <Content Include="Content\images\title.png" />
+    <Content Include="Content\js\bootstrap-datetimepicker.fr.js" />
+    <Content Include="Content\js\bootstrap-datetimepicker.js" />
+    <Content Include="Content\js\bootstrap-hover-dropdown.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\html5shiv.js" />
+    <Content Include="Content\js\jquery-2.1.1.js" />
+    <Content Include="Content\js\photo-gallery.js" />
+    <Content Include="Content\js\respond.min.js" />
+    <Content Include="Content\owl-carousel\AjaxLoader.gif" />
+    <Content Include="Content\owl-carousel\grabbing.png" />
+    <Content Include="Content\owl-carousel\owl.carousel.css" />
+    <Content Include="Content\owl-carousel\owl.carousel.js" />
+    <Content Include="Content\owl-carousel\owl.carousel.min.js" />
+    <Content Include="Content\owl-carousel\owl.theme.css" />
+    <Content Include="Content\owl-carousel\owl.transitions.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -219,6 +336,41 @@
     <Content Include="Models\usa.edmx.diagram">
       <DependentUpon>usa.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\font-awesome-4.4.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\font-awesome-4.4.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\font-awesome-4.4.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\font-awesome-4.4.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\font-awesome-4.4.0\fonts\FontAwesome.otf" />
+    <Content Include="Content\font-awesome-4.4.0\less\animated.less" />
+    <Content Include="Content\font-awesome-4.4.0\less\bordered-pulled.less" />
+    <Content Include="Content\font-awesome-4.4.0\less\core.less" />
+    <Content Include="Content\font-awesome-4.4.0\less\fixed-width.less" />
+    <Content Include="Content\font-awesome-4.4.0\less\font-awesome.less" />
+    <Content Include="Content\font-awesome-4.4.0\less\icons.less" />
+    <Content Include="Content\font-awesome-4.4.0\less\larger.less" />
+    <Content Include="Content\font-awesome-4.4.0\less\list.less" />
+    <Content Include="Content\font-awesome-4.4.0\less\mixins.less" />
+    <Content Include="Content\font-awesome-4.4.0\less\path.less" />
+    <Content Include="Content\font-awesome-4.4.0\less\rotated-flipped.less" />
+    <Content Include="Content\font-awesome-4.4.0\less\stacked.less" />
+    <Content Include="Content\font-awesome-4.4.0\less\variables.less" />
+    <Content Include="Content\font-awesome-4.4.0\scss\font-awesome.scss" />
+    <Content Include="Content\font-awesome-4.4.0\scss\_animated.scss" />
+    <Content Include="Content\font-awesome-4.4.0\scss\_bordered-pulled.scss" />
+    <Content Include="Content\font-awesome-4.4.0\scss\_core.scss" />
+    <Content Include="Content\font-awesome-4.4.0\scss\_fixed-width.scss" />
+    <Content Include="Content\font-awesome-4.4.0\scss\_icons.scss" />
+    <Content Include="Content\font-awesome-4.4.0\scss\_larger.scss" />
+    <Content Include="Content\font-awesome-4.4.0\scss\_list.scss" />
+    <Content Include="Content\font-awesome-4.4.0\scss\_mixins.scss" />
+    <Content Include="Content\font-awesome-4.4.0\scss\_path.scss" />
+    <Content Include="Content\font-awesome-4.4.0\scss\_rotated-flipped.scss" />
+    <Content Include="Content\font-awesome-4.4.0\scss\_stacked.scss" />
+    <Content Include="Content\font-awesome-4.4.0\scss\_variables.scss" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Properties\PublishProfiles\UsaNews24h.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -266,6 +418,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\list.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

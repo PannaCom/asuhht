@@ -25,5 +25,6 @@ namespace UsaNews24h.Models
         public Nullable<System.DateTime> date_time { get; set; }
         public Nullable<System.TimeSpan> time { get; set; }
         public Nullable<int> date_id { get; set; }
+        public string pdf { get; set; }
     }
 }
