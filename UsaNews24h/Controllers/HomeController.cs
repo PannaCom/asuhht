@@ -11,6 +11,8 @@ using System.Xml;
 using UsaNews24h.Models;
 using PagedList;
 using SelectPdf;
+using Boilerpipe.Net;
+using Boilerpipe.Net.Extractors;
 namespace UsaNews24h.Controllers
 {
     public class HomeController : Controller
@@ -194,6 +196,8 @@ namespace UsaNews24h.Controllers
                                             Uri urldomain= new Uri(link);
                                             string pdf=Config.unicodeToNoMark(title) + ".pdf";
                                             savePdf(link, pdf, urldomain.Host);
+                                            string full_content = getAllContent(link);
+
                                             news n = new news();
                                             n.date_id = datetimeid;
                                             n.date_time = fdate;
@@ -201,6 +205,7 @@ namespace UsaNews24h.Controllers
                                             n.full_content = "";
                                             n.link = link;
                                             n.name = title;
+                                            n.full_content = full_content;
                                             n.state = state1;
                                             n.image=image;
                                             n.time = fdate.Value.TimeOfDay;
@@ -247,6 +252,58 @@ namespace UsaNews24h.Controllers
             catch
             {
                 return "0";
+            }
+        }
+        public string updateContent()
+        {
+            try
+            {
+                int datetimeid = Config.datetimeidByDay(-3);
+                var p = (from q in db.news where q.date_id >= datetimeid select q).ToList();
+                for (int i = 0; i < p.Count; i++)
+                {
+                    string content = getAllContent(p[i].link);
+                    db.Database.ExecuteSqlCommand("update news set full_content=N'" + HttpUtility.HtmlEncode(content) + "' where id=" + p[i].id);
+                }
+                return "1";
+            }
+            catch(Exception ex)
+            {
+                return ex.ToString();
+            }
+        }
+        public string getAllContent(string link)
+        {
+            try
+            {
+                
+                
+
+                String page = String.Empty;
+                WebRequest request = WebRequest.Create(link);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream stream = response.GetResponseStream();
+                StreamReader streamReader = new StreamReader(stream, Encoding.UTF8);
+
+                page = streamReader.ReadToEnd();
+                string text = CommonExtractors.ArticleExtractor.GetText(page);
+                text = text.Replace("\r\n", "<br>").Replace("\r", "<br>").Replace("\n", "<br>");
+                string allImage = "";
+                string pattern = @"<(img)\b[^>]*>";
+                Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
+                MatchCollection matches = rgx.Matches(page);
+
+                for (int i = 0, l = matches.Count; i < l; i++)
+                {
+                     
+                    allImage += matches[i].Value;
+                }
+                
+                return text + allImage;
+            }
+            catch (Exception ex)
+            {
+                return "";
             }
         }
         public void savePdf(string url, string name,string domain)
